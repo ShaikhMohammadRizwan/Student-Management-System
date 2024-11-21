@@ -2,30 +2,150 @@
 
 {% block body %}
 <h3 class="text-center m-4">
-    Update Student
+    <span class="text-primary">Update</span> Student
 </h3>
+
 {% if success %}
-<div class="alert alert-success" role="alert">
-    {{ success }}
-    <a href="{% url 'index' %}">View Student List</a>
+<div class="alert alert-success fade show" role="alert">
+    <strong>Success!</strong> {{ success }}
+    <a href="{% url 'index' %}" class="btn btn-link">View Student List</a>
 </div>
 {% else %}
 <div class="row justify-content-center">
-    <div class="col-6">
-        <div class="card bg-light mb-3">
-            <div class="card-header">
-                <i class="fa-solid fa-pen-to-square fa-lg"></i> Update Student Information
+    <div class="col-lg-6 col-md-8 col-sm-10">
+        <div class="card shadow-lg rounded-3 bg-light mb-3">
+            <div class="card-header text-white bg-gradient-primary">
+                <i class="fas fa-pen-to-square fa-lg"></i> Update Student Information
             </div>
             <div class="card-body">
-                <form action="" method="POST">
+                <form action="" method="POST" class="needs-validation" novalidate>
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Update</button>
+                    <a href="{% url 'index' %}" class="btn btn-secondary w-100 mt-2">Cancel</a>
                 </form>
             </div>
         </div>
     </div>
 </div>
 {% endif %}
+
 {% endblock body %}
+
+<!-- Custom Styles -->
+<style>
+    /* Custom Styling */
+    body {
+        background: linear-gradient(135deg, #f8f9fa, #e2e6ea);
+        font-family: 'Poppins', sans-serif;
+    }
+
+    h3 {
+        color: #3a86ff;
+        font-weight: 700;
+        letter-spacing: 1px;
+        font-size: 2rem;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .card {
+        border: none;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-header {
+        background: linear-gradient(90deg, #3a86ff, #8338ec);
+        font-weight: 600;
+        text-align: center;
+        color: white;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+    }
+
+    .card-body {
+        background-color: #ffffff;
+        padding: 20px;
+    }
+
+    .alert {
+        background-color: #28a745;
+        color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.5s ease;
+    }
+
+    .alert a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .alert a:hover {
+        color: #ffbe0b;
+    }
+
+    .btn-primary {
+        background: linear-gradient(90deg, #8338ec, #3a86ff);
+        border: none;
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding: 12px 15px;
+        border-radius: 10px;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(90deg, #3a86ff, #8338ec);
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+        background-color: #f8f9fa;
+        border: 1px solid #ccc;
+        color: #495057;
+        font-weight: 500;
+        padding: 12px 15px;
+        border-radius: 10px;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn-secondary:hover {
+        background-color: #e2e6ea;
+        transform: translateY(-2px);
+    }
+
+    .w-100 {
+        width: 100% !important;
+    }
+
+    .mt-3 {
+        margin-top: 15px;
+    }
+
+    .mt-2 {
+        margin-top: 10px;
+    }
+
+    /* Mobile Friendly Design */
+    @media (max-width: 768px) {
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .btn-primary, .btn-secondary {
+            font-size: 1rem;
+            padding: 10px;
+        }
+    }
+</style>

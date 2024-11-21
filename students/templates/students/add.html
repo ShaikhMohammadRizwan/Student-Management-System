@@ -1,37 +1,112 @@
 {% extends "students/base.html" %}
 
 {% block body %}
-<h3 class="text-center m-4">
-    Add Students
-</h3>
-{% if success %}
-<div class="alert alert-success" role="alert">
-    The New Students have been added to the list Successfully.
-    <a href="{% url 'index' %}">View Student List</a>
-</div>
-{% else %}
-<div class="row justify-content-center">
-    <div class="col-6">
-        <div class="card bg-light mb-3">
-            <div class="card-header"><i class="fa-solid fa-address-card fa-lg"></i>
-            Student Registration
-        </div>
-            <div class="card-body">
-                <form action="{% url "add"  %}" method="POST">
-                    {% csrf_token %}
-                    {{form.as_p}}
-                    <button type="submit" class="btn btn-primary">
-                        Add 
-                    </button>
-                    <a href="{% url "index" %}" class="btn btn-secondary">
-                        Cancel
-                    </a>
-                </form>
+<div class="container my-5">
+    <h2 class="text-center text-primary mb-4">
+        <i class="fa-solid fa-address-card"></i> Add New Student
+    </h2>
+    
+    {% if success %}
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        🎉 <strong>Success!</strong> The new student has been added to the list.
+        <a href="{% url 'index' %}" class="btn btn-link">View Student List</a>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% else %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-gradient-primary text-white text-center">
+                    <h4 class="mb-0"><i class="fa-solid fa-user-plus"></i> Student Registration</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form action="{% url 'add' %}" method="POST" id="studentForm">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg w-100 me-2" onclick="showLoader()">
+                                <i class="fa-solid fa-check"></i> Add Student
+                            </button>
+                            <a href="{% url 'index' %}" class="btn btn-secondary btn-lg w-100">
+                                <i class="fa-solid fa-times"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
-          
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Loading Spinner -->
+<div id="loader" class="loader-overlay d-none">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
     </div>
 </div>
-{% endif %}
 
 {% endblock body %}
+
+{% block extra_css %}
+<style>
+    /* Custom Styles */
+    .bg-gradient-primary {
+        background: linear-gradient(45deg, #007bff, #0056b3);
+    }
+    
+    .card {
+        border-radius: 15px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Loader Overlay */
+    .loader-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }
+
+    /* Buttons */
+    button, a {
+        font-size: 1.2rem;
+        border-radius: 10px;
+    }
+</style>
+{% endblock extra_css %}
+
+{% block extra_js %}
+<script>
+    // Show loading spinner
+    function showLoader() {
+        document.getElementById('loader').classList.remove('d-none');
+    }
+
+    // Animate form appearance
+    document.addEventListener("DOMContentLoaded", function () {
+        const formCard = document.querySelector(".card");
+        if (formCard) {
+            formCard.style.opacity = "0";
+            formCard.style.transform = "translateY(50px)";
+            setTimeout(() => {
+                formCard.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+                formCard.style.opacity = "1";
+                formCard.style.transform = "translateY(0)";
+            }, 200);
+        }
+    });
+</script>
+{% endblock extra_js %}
