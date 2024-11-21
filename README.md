@@ -1,6 +1,6 @@
 # Student Management System
 
-Welcome to the **Student Management System** built using **Django**. This system allows you to easily manage students' data, including their student numbers, names, email addresses, GPA, and more. The system provides features for adding, updating, viewing, and deleting student records, with a user-friendly interface powered by **Bootstrap 5**.
+Welcome to the **Student Management System** built using **Django**. This system allows you to easily manage student data, including student numbers, names, email addresses, GPA, etc. The system provides features for adding, updating, viewing, and deleting student records, with a user-friendly interface powered by **Bootstrap 5**.
 
 ## Features
 
@@ -19,7 +19,7 @@ Welcome to the **Student Management System** built using **Django**. This system
 
 ## Installation
 
-To get started with the **Student Management System**, follow the instructions below to set up the project locally.
+To start with the **Student Management System**, follow the instructions below to set up the project locally.
 
 ### Prerequisites
 
@@ -33,21 +33,17 @@ pip install django
 Clone the Repository
 Clone the repository to your local machine using Git:
 
-bash
-Copy code
 git clone https://github.com/your-username/student-management-system.git
 Set Up the Database
 After cloning the repository, navigate into the project directory and set up the database:
 
-bash
-Copy code
+
 cd student-management-system
 python manage.py migrate
 Running the Server
 Start the Django development server:
 
-bash
-Copy code
+
 python manage.py runserver
 Open your web browser and go to http://127.0.0.1:8000/ to access the system.
 
@@ -84,8 +80,7 @@ Yes, you can delete a student by clicking the Delete button next to the student'
 Is there a way to add more fields to the student record?
 Yes, you can extend the model in models.py to add more fields (e.g., date of birth, phone number, etc.). After making changes to the model, run the following commands to apply migrations and update the database:
 
-bash
-Copy code
+
 python manage.py makemigrations
 python manage.py migrate
 Is this project suitable for production use?
