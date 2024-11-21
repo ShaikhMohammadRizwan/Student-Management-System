@@ -94,14 +94,6 @@ You: Thanks for being interested in this project! Contributions are welcome.
 Roadmap
 This project is continuously being improved. Here are some planned features for future releases:
 
- Add authentication (login/register).
- Implement pagination for the student list page.
- Add search and filter functionality for students.
- Enhance student data security with password protection.
- Refactor the code for better scalability and modularity.
-Contact
-For any inquiries or support, please feel free to open an issue or contact the author directly.
-
 Email: your-email@example.com
 GitHub: https://github.com/your-username
 Thank you for checking out the Student Management System. Feel free to explore, contribute, and use it for your own purposes!
