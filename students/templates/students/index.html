@@ -153,7 +153,10 @@
     <div class="container-fluid">
         <h3 class="m-4">All Students</h3>
         <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12">
+                {% if students %}
+                {% else %}
+                {% endif %}
                 <div class="card bg-light ms-4 me-4 mb-4">
                     <div class="card-header">Header</div>
                     <div class="card-body">
