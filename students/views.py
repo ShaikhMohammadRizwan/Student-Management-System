@@ -38,3 +38,26 @@ def add(request):
 
     # Always render the form for GET request or in case of form errors
     return render(request, 'students/add.html', {'form': form})
+
+
+def edit(request, id):
+    student = Student.objects.get(pk=id)  # Ensure the student object is retrieved only once
+    if request.method == 'POST':
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return render(request, 'students/edit.html', {
+                'form': form,
+                'success': 'Student updated successfully!',
+            })
+    else:
+        form = StudentForm(instance=student)  # Initialize form with existing student data
+    
+    return render(request, 'students/edit.html', {'form': form})
+
+
+def delete(request, id):
+    if request.method == 'POST':
+        student = Student.objects.get(pk=id)
+        student.delete()
+    return HttpResponseRedirect(reverse ('index'))

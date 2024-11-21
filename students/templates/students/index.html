@@ -29,9 +29,42 @@
                     <td>{{ student.field_of_study }}</td>
                     <td class="text-center">{{ student.gpa }}</td>
                     <td class="text-center">
-                        <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#myModal{{ student.id }}">
+                        <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#myModal{{student.id}}">
                             <i class="fa-solid fa-circle-info"></i> View
                         </button>
+                        <a class="btn btn-warning btn-sm me-1" href="{% url "edit" student.id %}">
+                            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                        </a>
+                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{student.id}}" href="{% url "delete" student.id %}">
+                            <i class="fa-solid fa-trash fa-lg"></i>
+                        </a>
+
+                        <!-- Delete Modal -->
+                        <div class="modal fade" id="delete{{student.id}}" tabindex="-1" aria-labelledby="myModalLabel{{ student.id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="myModalLabel{{ student.id }}">
+                                            Student: {{ student.first_name }} {{ student.last_name }}
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            Are you sure you want to delete the student {{ student.first_name }} {{ student.last_name }}?
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form action="{% url "delete" student.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <input type="submit" class="btn btn-primary" value="Delete">
+                                        </form>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </td>
                 </tr>
 
